@@ -11,6 +11,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/urlShortener");
 
 // Define URL schema and model
 const urlSchema = new mongoose.Schema({
+  originalFileNames: [String],
   originalUrls: [String],
   shortUrl: String,
 });
@@ -24,48 +25,30 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     // Generate a unique filename using the current timestamp
-    const uniqueName = `${Date.now()}-${path.basename(
-      file.originalname,
-      path.extname(file.originalname)
-    )}${path.extname(file.originalname)}`;
+    const uniqueName = `${Date.now()}-${file.originalname}`;
     cb(null, uniqueName);
   },
 });
+
 const upload = multer({ storage });
 
 // Serve static files from the "public" directory
 app.use(express.static("public"));
 
 app.post("/upload", upload.array("files[]"), async (req, res) => {
-  console.log(req.files); // Array of files
-
-  // Respond with the unique URL of all uploaded files
+  const originalFileNames = req.files.map((file) => file.originalname);
   const originalUrls = req.files.map(
     (file) => `http://${req.get("host")}/uploads/${file.filename}`
   );
 
-  // Generate a short URL and save it to the database
   const shortUrl = shortid.generate();
-  const url = new Url({ originalUrls, shortUrl });
+  const url = new Url({ originalFileNames, originalUrls, shortUrl });
   await url.save();
 
   res.send(`${req.protocol}://${req.get("host")}/${shortUrl}`);
 });
 
 // Redirect requests to the short URL to the original URL
-// app.get("/:shortUrl", async (req, res) => {
-//   const url = await Url.findOne({ shortUrl: req.params.shortUrl });
-//   if (url) {
-//     let html = "<h1>Files:</h1>";
-//     url.originalUrls.forEach((originalUrl) => {
-//       html += `<a href="${originalUrl}">${path.basename(originalUrl)}</a><br>`;
-//     });
-//     res.send(html);
-//   } else {
-//     res.status(404).send("Short URL not found");
-//   }
-// });
-
 app.get("/:shortUrl", async (req, res) => {
   const url = await Url.findOne({ shortUrl: req.params.shortUrl });
   if (url) {
@@ -75,9 +58,9 @@ app.get("/:shortUrl", async (req, res) => {
         res.status(500).send("Server error");
       } else {
         let fileLinks = "";
-        url.originalUrls.forEach((originalUrl) => {
-          const filename = path.basename(originalUrl);
-          const ext = path.extname(filename).slice(1);
+        url.originalFileNames.forEach((originalFileName, i) => {
+          const originalUrl = url.originalUrls[i];
+          const ext = path.extname(originalFileName).slice(1);
           let logo = "";
           if (["jpg", "jpeg", "png", "gif"].includes(ext)) {
             logo =
@@ -105,10 +88,9 @@ app.get("/:shortUrl", async (req, res) => {
           } else {
             logo = '<img class="logo" src="/logos/file.png" alt="File">';
           }
-          // Add more conditions here for other file types
           fileLinks += `<div class="file">
                           ${logo}
-                          <p>${filename}</p>
+                          <p>${originalFileName}</p>
                           <a href="${originalUrl}" download>
                             <button>Download</button>
                           </a>
@@ -131,6 +113,6 @@ app.get("/uploads/:filename", (req, res) => {
 });
 
 // app.listen(3000, () => console.log("Server started on port 3000"));
-app.listen(3000,  () =>
+app.listen(3000, "192.168.137.165", () =>
   console.log("Server started on port 3000")
 );
