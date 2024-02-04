@@ -77,7 +77,7 @@ function handleFiles(files) {
           document.body.removeChild(tempInput);
 
           /* Alert the copied text */
-          // alert("Copied the link: " + shortUrl);
+          alert("Copied the link: " + shortUrl);
         });
 
         // Append the button to the QR code container
