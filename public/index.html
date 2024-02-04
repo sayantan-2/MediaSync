@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midia_Sync</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="icon.jpg">
+
+</head>
+
+<body>
+    
+    <div class="background">
+        <header>MediaSync</header>
+        <h1>Upload files</h1>
+        <div id="drop" onclick="document.getElementById('fileInput').click();">
+            <!-- Drop files here or click to upload -->
+            <label for="fileInput">Select Files:</label>
+            <input type="file" id="fileInput" onchange="handleFiles(this.files)" multiple>
+        </div>
+        <br>
+        <div id="qrcode"></div>
+        
+    </div>
+    <div id="description">
+        <h2>Upload Files without any Log in</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat temporibus error rerum aspernatur nam
+            laborum odio? Tempora deserunt dolorem nemo inventore, maxime facilis possimus nihil! Quae provident earum
+            corporis perferendis magni velit delectus excepturi veniam obcaecati iure, vitae suscipit itaque illo quidem
+            repellat nisi vero est quia nam alias dolore voluptatibus. Deleniti laudantium at ipsam tenetur? Facilis
+            magni vero, odio repellendus cum, doloremque placeat debitis voluptas, sequi incidunt beatae. Quia commodi
+            animi culpa debitis nesciunt? Ab minus ad cum nostrum dolores ipsa nobis maxime veniam quia, quo, nulla
+            necessitatibus reprehenderit, harum reiciendis commodi ipsum et similique in? Voluptate, consequuntur quos.
+        </p>
+    </div>
+
+
+    <div id="eg">
+        <h2>Example</h2>
+        <img src="Image-Formats-02.png" class="GG" alt="...">
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
