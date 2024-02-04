@@ -1,22 +1,19 @@
 @font-face {
-  font-family: 'MyCustomFont';
-  src: url('space\ age.ttf') format('truetype');
-
+  font-family: "MyCustomFont";
+  src: url("font/space\ age.ttf") format("truetype");
 }
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&family=Noto+Sans:ital,wght@1,300&family=Space+Grotesk:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&family=Noto+Sans:ital,wght@1,300&family=Space+Grotesk:wght@300&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
-
 }
 
 body {
   /* font-family:'MyCustomFont', sans-serif; */
   display: flex;
   flex-direction: column;
-  background: url('gradient.avif');
+  background: url("images/gradient.avif");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -36,7 +33,7 @@ body {
 }
 
 h1 {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   text-align: center;
   color: #fff;
   margin-top: 50px;
@@ -50,7 +47,7 @@ h1 {
   justify-content: center;
   align-items: center;
   margin: 2rem auto;
-  background: url('post.jpg');
+  background: url("images/post.jpg");
   background-size: cover;
   opacity: 0.5;
   box-shadow: 0 0 10px #ccc;
@@ -67,11 +64,21 @@ h1 {
 
 /* Define the @keyframes rule for the glow animation */
 @keyframes glow {
-  0% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); }
-  25% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); }
-  50% { box-shadow: 0 0 20px rgba(0, 0, 255, 0.5); }
-  75% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); }
-  100% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); }
+  0% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+  }
+  25% {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 0, 255, 0.5);
+  }
+  75% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+  }
 }
 
 #fileInput {
@@ -93,27 +100,28 @@ h1 {
 }
 
 #qrcode {
-  width: 25%;
-  height: 25%;
+  width: 16%;
+  /* height: 25%; */
   align-items: center;
   display: none;
-  justify-content: center;
-  margin: 12rem auto;
+  justify-content: flex-end;
+  margin: 8rem auto;
   background-color: #fbe9e9;
-
+  flex-direction: column;
   border: 2px solid black;
   text-align: left;
-  padding: 30px;
-
+  padding: 30px 30px 0px 30px;
   cursor: pointer;
   border-radius: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 header {
   width: 100%;
   height: 1rem;
   display: flex;
-  background:black;
+  background: black;
   box-shadow: #ccc 0px 0px 5px 0px;
   border: 2px solid black;
   /* border-bottom: black; */
@@ -121,7 +129,7 @@ header {
   color: aliceblue;
   /* background-color: seagreen; */
   margin: auto;
-  font-family:'MyCustomFont', sans-serif;
+  font-family: "MyCustomFont", sans-serif;
 
   justify-content: center;
   padding: 30px;
@@ -131,11 +139,11 @@ header {
   /* border-radius: 10px; */
 }
 
-button {
+/* button {
   border: 0px;
   background-color: transparent;
   font-size: 1.5rem;
-}
+} */
 
 #description {
   display: flex;
@@ -156,15 +164,15 @@ button {
   box-shadow: #5e3580 0px 0px 10px 0px;
   /* background-: ; */
   /* background: url('bground2.png'); */
-
 }
 
-#description h2 , h2 {
+#description h2,
+h2 {
   margin: 10px;
   opacity: 1;
   color: white;
   text-shadow: 4px 2px 4px rgba(97, 84, 84, 0.5);
-  font-family: 'Baloo Bhaijaan 2', sans-serif;
+  font-family: "Baloo Bhaijaan 2", sans-serif;
 }
 
 #description p {
@@ -179,9 +187,10 @@ button {
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 20px;
 }
-#eg{
+#eg {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -201,10 +210,26 @@ button {
   /* background-: ; */
   /* background: url('bground2.png'); */
 }
-.GG{
+.GG {
   margin: 10px;
   border: 2px solid black;
   box-sizing: border-box;
   border-radius: 10px;
 }
+/* ... existing code ... */
 
+button {
+  padding: 10px;
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 16px;
+  margin: 25px 3px 0px 0px;
+  cursor: pointer;
+  width: 145%;
+}
+
+/* ... existing code ... */
